@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.dev/license
  */
 
-import {HttpBackend, ɵREQUESTS_CONTRIBUTE_TO_STABILITY} from '../../index';
+import {HttpBackend, JsonpClientBackend, ɵREQUESTS_CONTRIBUTE_TO_STABILITY} from '../../index';
 import {Provider} from '@angular/core';
 
 import {HttpTestingController} from './api';
@@ -16,6 +16,7 @@ export function provideHttpClientTesting(): Provider[] {
   return [
     HttpClientTestingBackend,
     {provide: HttpBackend, useExisting: HttpClientTestingBackend},
+    {provide: JsonpClientBackend, useExisting: HttpClientTestingBackend},
     {provide: HttpTestingController, useExisting: HttpClientTestingBackend},
     {provide: ɵREQUESTS_CONTRIBUTE_TO_STABILITY, useValue: false},
   ];
